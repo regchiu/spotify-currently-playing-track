@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "get-authorize-url": "node scripts/getAuthorizeURL.js",
-    "get-refresh-token": "node scripts/getRefreshToken.js"
+    "get-refresh-token": "node scripts/getRefreshToken.js",
+    "start": "node ./api/index.js"
   },
   "repository": {
     "type": "git",
