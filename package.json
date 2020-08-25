@@ -1,0 +1,28 @@
+{
+  "name": "spotify-currently-playing-track",
+  "version": "1.0.0",
+  "description": "Dynamically generate Spotify currently playing tracks for your github readme",
+  "main": "index.js",
+  "scripts": {
+    "get-authorize-url": "node scripts/getAuthorizeURL.js",
+    "get-refresh-token": "node scripts/getRefreshToken.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/regchiu/spotify-currently-playing-track.git"
+  },
+  "keywords": [],
+  "author": "Reg Chiu",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/regchiu/spotify-currently-playing-track/issues"
+  },
+  "homepage": "https://github.com/regchiu/spotify-currently-playing-track#readme",
+  "devDependencies": {},
+  "dependencies": {
+    "axios": "^0.20.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "spotify-web-api-node": "^4.0.0"
+  }
+}
