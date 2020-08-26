@@ -149,11 +149,8 @@ app.get('/api', async (req, res) => {
           <img class="card__logo" src="data:image/svg+xml,${encodeURIComponent(
             spotifyLogoImg
           )}" width="50%" />
-          <div class="card__title">${cardTitle.replace(/&/gi, '&amp;')}</div>
-          <div class="card__subtitle">${cardSubtitle.replace(
-            /&/gi,
-            '&amp;'
-          )}</div>
+          <div class="card__title"><![CDATA[${cardTitle}]]></div>
+          <div class="card__subtitle"><![CDATA[${cardSubtitle}]]></div>
         </div>
       </div>
     </a>
