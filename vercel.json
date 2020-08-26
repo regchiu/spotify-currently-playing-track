@@ -4,5 +4,8 @@
       "source": "/api/(.*)",
       "destination": "/api/index.js"
     }
+  ],
+  "redirects": [
+    { "source": "/", "destination": "https://github.com/regchiu/spotify-currently-playing-track" }
   ]
 }
