@@ -1,4 +1,6 @@
-# spotify-currently-playing-track
+# Spotify Currently Playing Track
+
+Dynamically generate Spotify currently playing tracks for your github readme.
 
 ## Overview
 
