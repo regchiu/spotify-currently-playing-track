@@ -31,20 +31,22 @@ app.get('/api', async (req, res) => {
     let cardSubtitle = ''
     let cardLogoAnimation = 'none'
     if (Object.keys(currentPlayingTrack.body).length > 0) {
-      externalLink = currentPlayingTrack.body.item.album.external_urls.spotify
-      const imgUrl = currentPlayingTrack.body.item.album.images.filter(
-        (image) => image.height === 300
-      )[0].url
-      const response = await axios.get(imgUrl, {
-        responseType: 'arraybuffer'
-      })
-      cardImg = `data:image/png;base64,${Buffer.from(
-        response.data,
-        'binary'
-      ).toString('base64')}`
-      cardTitle = currentPlayingTrack.body.item.name
-      cardSubtitle = currentPlayingTrack.body.item.artists[0].name
-      cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
+      if (currentPlayingTrack.body.item) {
+        externalLink = currentPlayingTrack.body.item.album.external_urls.spotify
+        const imgUrl = currentPlayingTrack.body.item.album.images.filter(
+          (image) => image.height === 300
+        )[0].url
+        const response = await axios.get(imgUrl, {
+          responseType: 'arraybuffer'
+        })
+        cardImg = `data:image/png;base64,${Buffer.from(
+          response.data,
+          'binary'
+        ).toString('base64')}`
+        cardTitle = currentPlayingTrack.body.item.name
+        cardSubtitle = currentPlayingTrack.body.item.artists[0].name
+        cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
+      }
     }
     res.setHeader('Content-Type', 'image/svg+xml')
     res.send(`<svg fill="none" viewBox="0 0 500 250" width="500" height="250" xmlns="http://www.w3.org/2000/svg">
