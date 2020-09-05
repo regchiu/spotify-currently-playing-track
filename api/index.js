@@ -85,6 +85,8 @@ app.get('/api', async (req, res) => {
         flex-direction: column;
         align-items: center;
         justify-content: space-around;
+        border-top-right-radius: 4px;
+        border-bottom-right-radius: 4px;
       }
 
       .card__logo {
@@ -152,7 +154,7 @@ app.get('/api', async (req, res) => {
         <div class="card__body">
           <img class="card__logo" src="data:image/svg+xml,${encodeURIComponent(
             spotifyLogoImg
-          )}" width="50%" />
+          )}" width="200" />
           <div class="card__title"><![CDATA[${cardTitle}]]></div>
           <div class="card__subtitle"><![CDATA[${cardSubtitle}]]></div>
         </div>
