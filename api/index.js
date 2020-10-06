@@ -90,6 +90,8 @@ app.get('/api', async (req, res) => {
       }
 
       .card__logo {
+        min-width: 150px;
+        width: 50%;
         transform-origin: bottom;
         animation: ${cardLogoAnimation};
       }
@@ -154,7 +156,7 @@ app.get('/api', async (req, res) => {
         <div class="card__body">
           <img class="card__logo" src="data:image/svg+xml,${encodeURIComponent(
             spotifyLogoImg
-          )}" width="60%" />
+          )}" />
           <div class="card__title"><![CDATA[${cardTitle}]]></div>
           <div class="card__subtitle"><![CDATA[${cardSubtitle}]]></div>
         </div>
