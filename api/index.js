@@ -28,7 +28,7 @@ app.get('/api', async (req, res) => {
     console.log(currentPlayingTrack.body)
     let externalLink = '#'
     let cardImg = `data:image/svg+xml,${encodeURIComponent(stopImg)}`
-    let cardTitle = 'No track is currently playing'
+    let cardTitle = 'No tracks'
     let cardSubtitle = ''
     let cardLogoAnimation = 'none'
     if (Object.keys(currentPlayingTrack.body).length > 0) {
