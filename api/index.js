@@ -90,7 +90,8 @@ app.get('/api', async (req, res) => {
       }
 
       .card__logo {
-        width: 50%;
+        width: 100px;
+        height: 50px;
         transform-origin: bottom;
         animation: ${cardLogoAnimation};
       }
