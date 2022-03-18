@@ -10,7 +10,7 @@ const spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.YOUR_REDIRECT_URI,
 })
 
-async function printAthorizeURL(){
+async function printAuthorizeURL(){
   try {
     const authorizeURL = spotifyApi.createAuthorizeURL(scopes,state)
     console.log(`Your URL is ${authorizeURL}, then paste the entire link into your browser.`)
@@ -19,4 +19,4 @@ async function printAthorizeURL(){
   }
 }
 
-printAthorizeURL()
+printAuthorizeURL()
