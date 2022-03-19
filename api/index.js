@@ -26,6 +26,7 @@ app.get('/api', async (req, res) => {
 
     let externalLink = '#'
     let cardImg = `url(data:image/svg+xml;base64,${stopSvg})`
+    let cardImgBackgroundSize = '125px 125px'
     let cardTitle = 'No tracks'
     let cardSubtitle = ''
     let cardLogoAnimation = 'none'
@@ -44,6 +45,7 @@ app.get('/api', async (req, res) => {
         cardImg = `url(data:image/png;base64,${Buffer.from(response.data, 'binary').toString(
           'base64'
         )})`
+        cardImgBackgroundSize = 'contain'
         cardTitle = currentPlayingTrack.body.item.name
         cardSubtitle = currentPlayingTrack.body.item.artists[0].name
         cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
@@ -73,7 +75,7 @@ app.get('/api', async (req, res) => {
         height: 250px;
         background-image: ${cardImg};
         background-repeat: no-repeat;
-        background-size: 125px 125px;
+        background-size: ${cardImgBackgroundSize};
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px;
         background-position: center;
