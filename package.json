@@ -19,7 +19,11 @@
     "url": "https://github.com/regchiu/spotify-currently-playing-track/issues"
   },
   "homepage": "https://github.com/regchiu/spotify-currently-playing-track#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^8.11.0",
+    "eslint-config-prettier": "^8.5.0",
+    "prettier": "^2.6.0"
+  },
   "dependencies": {
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",

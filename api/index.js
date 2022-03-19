@@ -11,7 +11,7 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.YOUR_CLIENT_ID,
   clientSecret: process.env.YOUR_CLIENT_SECRET,
   redirectUri: process.env.YOUR_REDIRECT_URI,
-  refreshToken: process.env.YOUR_REFRESH_TOKEN
+  refreshToken: process.env.YOUR_REFRESH_TOKEN,
 })
 
 app.get('/api', async (req, res) => {
@@ -38,7 +38,7 @@ app.get('/api', async (req, res) => {
         )[0].url
 
         const response = await axios.get(imgUrl, {
-          responseType: 'arraybuffer'
+          responseType: 'arraybuffer',
         })
 
         cardImg = `url(data:image/png;base64,${Buffer.from(response.data, 'binary').toString(
