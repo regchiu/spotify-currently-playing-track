@@ -17,7 +17,6 @@ const spotifyApi = new SpotifyWebApi({
 app.get('/api', async (req, res) => {
   try {
     const assetsPath = path.resolve(__dirname, '../assets')
-    const stopSvg = readFileSync(path.join(assetsPath, 'stop.svg'), { encoding: 'base64' })
     const logoSvg = readFileSync(path.join(assetsPath, 'logo.svg'), { encoding: 'base64' })
 
     const data = await spotifyApi.refreshAccessToken()
@@ -25,11 +24,12 @@ app.get('/api', async (req, res) => {
     const currentPlayingTrack = await spotifyApi.getMyCurrentPlayingTrack()
 
     let externalLink = '#'
-    let cardImg = `url(data:image/svg+xml;base64,${stopSvg})`
-    let cardImgBackgroundSize = '125px 125px'
+    let cardImg = 'radial-gradient(#222922, #000500)'
     let cardTitle = 'No tracks'
     let cardSubtitle = ''
     let cardLogoAnimation = 'none'
+    let cardTitleAnimation = 'noise 2s linear infinite'
+    let playing = false
 
     if (Object.keys(currentPlayingTrack.body).length > 0) {
       if (currentPlayingTrack.body.item) {
@@ -45,10 +45,11 @@ app.get('/api', async (req, res) => {
         cardImg = `url(data:image/png;base64,${Buffer.from(response.data, 'binary').toString(
           'base64'
         )})`
-        cardImgBackgroundSize = 'contain'
         cardTitle = currentPlayingTrack.body.item.name
         cardSubtitle = currentPlayingTrack.body.item.artists[0].name
         cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
+        cardTitleAnimation = 'none'
+        playing = true
       }
     }
 
@@ -64,7 +65,6 @@ app.get('/api', async (req, res) => {
       .card {
         width: 500px;
         height: 250px;
-        background-color: transparent;
         display: flex;
         box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
         border-radius: 4px;
@@ -72,20 +72,21 @@ app.get('/api', async (req, res) => {
 
       .card__img {
         width: 250px;
+        max-width: 250px;
         height: 250px;
         background-image: ${cardImg};
         background-repeat: no-repeat;
-        background-size: ${cardImgBackgroundSize};
+        background-size: contain;
         border-top-left-radius: 4px;
         border-bottom-left-radius: 4px;
         background-position: center;
-        background-color: #000000;
       }
 
       .card__body {
         background-color: #000000;
         width: 250px;
         height: 250px;
+        max-width: 250px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -105,16 +106,36 @@ app.get('/api', async (req, res) => {
         font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
         color: #ffffff;
         width: 250px;
+        height: 50px;
+        line-height: 50px;
         overflow:hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         text-align: center;
+        animation: ${cardTitleAnimation};
       }
       
       .card__subtitle {
         font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif;
         color: #ffffff;
-        padding: 0 5px;
+        width: 250px;
+        height: 50px;
+        line-height: 50px;
+        overflow:hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        text-align: center;
+      }
+
+      .overlay {
+        background-image: linear-gradient(transparent 0%, rgba(30, 215, 96, 0.1) 50%);
+        background-size: 250px 2px;
+        content: '';
+        position: absolute;
+        right: 0;
+        top: 0;
+        left: 0;
+        bottom: 0;
       }
 
       @keyframes bounce {
@@ -154,6 +175,24 @@ app.get('/api', async (req, res) => {
           transform: scale(1, 1) translateY(0) skew(0deg, 0deg);
         }
       }
+
+      @keyframes noise {
+        0%,3%,5%,42%,44%,63%,65%,92%,94%,100% {
+          opacity: 1; transform: scaleY(1);
+        }
+        4.3% {
+          opacity: 1; transform: scaleY(4);
+        }
+        43% {
+          opacity: 1; transform: scaleX(10) rotate(60deg);
+        }
+        64.3% {
+          opacity: 1; transform: scaleY(4);
+        }
+        93% {
+          opacity: 1; transform: scaleX(20) rotate(-60deg);
+        }
+      }
     </style>
     <a class="external-link" href="${externalLink}" target="_blank">
       <div class="card">
@@ -163,6 +202,7 @@ app.get('/api', async (req, res) => {
           <div class="card__title"><![CDATA[${cardTitle}]]></div>
           <div class="card__subtitle"><![CDATA[${cardSubtitle}]]></div>
         </div>
+        <div class="${playing ? '' : 'overlay'}"></div>
       </div>
     </a>
   </div>
@@ -170,7 +210,7 @@ app.get('/api', async (req, res) => {
 </svg>`)
     res.end()
   } catch (error) {
-    console.error(error)
+    console.error(JSON.stringify(error))
   }
 })
 
