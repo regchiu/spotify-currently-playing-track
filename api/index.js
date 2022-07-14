@@ -72,7 +72,6 @@ app.get('/api', async (req, res) => {
 
       .card__img {
         width: 250px;
-        max-width: 250px;
         height: 250px;
         background-image: ${cardImg};
         background-repeat: no-repeat;
@@ -86,7 +85,6 @@ app.get('/api', async (req, res) => {
         background-color: #000000;
         width: 250px;
         height: 250px;
-        max-width: 250px;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -108,7 +106,7 @@ app.get('/api', async (req, res) => {
         width: 250px;
         height: 50px;
         line-height: 50px;
-        overflow:hidden;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         text-align: center;
@@ -121,7 +119,7 @@ app.get('/api', async (req, res) => {
         width: 250px;
         height: 50px;
         line-height: 50px;
-        overflow:hidden;
+        overflow: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
         text-align: center;
@@ -177,20 +175,25 @@ app.get('/api', async (req, res) => {
       }
 
       @keyframes noise {
-        0%,3%,5%,42%,44%,63%,65%,92%,94%,100% {
-          opacity: 1; transform: scaleY(1);
+        0%, 3%, 5%, 42%, 44%, 63%, 65%, 92%, 94%, 100% {
+          opacity: 1;
+          transform: scaleY(1);
         }
         4.3% {
-          opacity: 1; transform: scaleY(4);
+          opacity: 1;
+          transform: scaleY(4);
         }
         43% {
-          opacity: 1; transform: scaleX(10) rotate(60deg);
+          opacity: 1;
+          transform: scaleX(10) rotate(60deg);
         }
         64.3% {
-          opacity: 1; transform: scaleY(4);
+          opacity: 1;
+          transform: scaleY(4);
         }
         93% {
-          opacity: 1; transform: scaleX(20) rotate(-60deg);
+          opacity: 1;
+          transform: scaleX(20) rotate(-60deg);
         }
       }
     </style>
