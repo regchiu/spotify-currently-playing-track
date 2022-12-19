@@ -46,19 +46,19 @@ $ npm run start
 
 1. [Sign in](https://vercel.com/login) with GitHub by Continue with GitHub.
 
-   ![Sign in](https://raw.githubusercontent.com/regchiu/resources/master/spotify-currently-playing-track/log_in_to_vercel.jpg)
+   ![Sign in](preview/log_in_to_vercel.jpg)
 
 2. Fork this repo.
 
 3. [Import project](https://vercel.com/import) and select **Import Git Repository**.
 
-    ![Import Project](https://raw.githubusercontent.com/regchiu/resources/master/spotify-currently-playing-track/import_project_vercel.jpg)
+    ![Import Project](preview/import_project_vercel.jpg)
 
     Allow access to your repository, if prompted.
 
 4. Select root and keep everything default, then add `YOUR_REFRESH_TOKEN`, `YOUR_CLIENT_SECRET` and `YOUR_CLIENT_ID` of **Environment Variables**.
 
-    ![Import Project Settings](https://raw.githubusercontent.com/regchiu/resources/master/spotify-currently-playing-track/import_project_settings_vercel.jpg)
+    ![Import Project Settings](preview/import_project_settings_vercel.jpg)
 
 5. Click deploy, and see your domains to use the API! enjoy! :tada:
 
