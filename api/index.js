@@ -58,10 +58,6 @@ app.get('/api', async (req, res) => {
       <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
           <style>
-            svg {
-              position: fixed;
-            }
-
             .external-link {
               text-decoration: none;
             }
