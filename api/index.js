@@ -11,7 +11,7 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.YOUR_CLIENT_ID,
   clientSecret: process.env.YOUR_CLIENT_SECRET,
   redirectUri: process.env.YOUR_REDIRECT_URI,
-  refreshToken: process.env.YOUR_REFRESH_TOKEN,
+  refreshToken: process.env.YOUR_REFRESH_TOKEN
 })
 
 app.get('/api', async (req, res) => {
@@ -105,7 +105,6 @@ app.get('/api', async (req, res) => {
               color: #ffffff;
               width: 250px;
               height: 50px;
-              line-height: 50px;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
@@ -118,7 +117,6 @@ app.get('/api', async (req, res) => {
               color: #ffffff;
               width: 250px;
               height: 50px;
-              line-height: 50px;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
