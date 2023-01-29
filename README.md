@@ -31,7 +31,7 @@ Paste the entire link into your browser and copy the url query string named **"c
 #### 4. Get Refresh Token
 
 ```
-$ npm get-refresh-token <code>
+$ npm run get-refresh-token <code>
 ```
 
 Copy and paste it into the `YOUR_REFRESH_TOKEN` field.
@@ -46,19 +46,19 @@ $ npm run start
 
 1. [Sign in](https://vercel.com/login) with GitHub by Continue with GitHub.
 
-   ![Sign in](preview/log_in_to_vercel.jpg)
+  ![Sign in](preview/log_in_to_vercel.jpg)
 
 2. Fork this repo.
 
 3. [Import project](https://vercel.com/import) and select **Import Git Repository**.
 
-    ![Import Project](preview/import_project_vercel.jpg)
+  ![Import Project](preview/import_project_vercel.jpg)
 
-    Allow access to your repository, if prompted.
+  Allow access to your repository, if prompted.
 
-4. Select root and keep everything default, then add `YOUR_REFRESH_TOKEN`, `YOUR_CLIENT_SECRET` and `YOUR_CLIENT_ID` of **Environment Variables**.
+1. Select root and keep everything default, then add `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET` and `YOUR_REFRESH_TOKEN` of **Environment Variables**.
 
-    ![Import Project Settings](preview/import_project_settings_vercel.jpg)
+  ![Import Project Settings](preview/import_project_settings_vercel.jpg)
 
-5. Click deploy, and see your domains to use the API! enjoy! :tada:
+2. Click deploy, and see your domains to use the API! enjoy! :tada:
 
