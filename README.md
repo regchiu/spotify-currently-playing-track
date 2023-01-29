@@ -56,9 +56,9 @@ $ npm run start
 
   Allow access to your repository, if prompted.
 
-1. Select root and keep everything default, then add `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET` and `YOUR_REFRESH_TOKEN` of **Environment Variables**.
+4. Select root and keep everything default, then add `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET` and `YOUR_REFRESH_TOKEN` of **Environment Variables**.
 
   ![Import Project Settings](preview/import_project_settings_vercel.jpg)
 
-2. Click deploy, and see your domains to use the API! enjoy! :tada:
+5. Click deploy, and see your domains to use the API! enjoy! :tada:
 
