@@ -62,3 +62,7 @@ $ npm run start
 
 5. Click deploy, and see your domains to use the API! enjoy! :tada:
 
+## Known Bug :bug:
+
+[Layer content inside HTML in SVG foreignObject renders in the wrong place](https://bugs.webkit.org/show_bug.cgi?id=23113)
+
