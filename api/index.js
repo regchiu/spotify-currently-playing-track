@@ -46,7 +46,7 @@ app.get('/api', async (req, res) => {
           'base64'
         )})`
         cardTitle = currentPlayingTrack.body.item.name
-        cardSubtitle = currentPlayingTrack.body.item.artists[0].name
+        cardSubtitle = currentPlayingTrack.body.item.artists.map(artist => artist.name).join(', ')
         cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
         cardTitleAnimation = 'none'
         playing = true
