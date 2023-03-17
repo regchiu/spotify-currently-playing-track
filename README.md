@@ -11,9 +11,10 @@ Dynamically generate Spotify currently playing tracks for your github readme.
 #### 1. Go to [Spotify Dashboard](https://developer.spotify.com/dashboard/) create an app.
 
 1. Go **edit settings** and add **Redirect URIs**. 
-i.e. White-listed addresses to redirect to after authentication success OR failure (e.g. http://mysite.com/callback/)
+i.e. White-listed addresses to redirect to after authentication success OR failure.
+For example development is http://localhost:3000, production is https://spotify-currently-playing-track.vercel.app/api.
 
-2. Rename `.env.example` to `.env` file.
+1. Rename `.env.example` to `.env` file.
     Copy **Redirect URIs**, **Client ID**, **Client Secret** and paste into `YOUR_REDIRECT_URI` ,`YOUR_CLIENT_ID` and `YOUR_CLIENT_SECRET` field.
 
 #### 2. Installation
