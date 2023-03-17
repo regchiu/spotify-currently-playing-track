@@ -58,6 +58,10 @@ app.get('/api', async (req, res) => {
       <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
           <style>
+            * {
+              box-sizing: border-box;
+            }
+
             .external-link {
               text-decoration: none;
               display: flex;
@@ -92,6 +96,7 @@ app.get('/api', async (req, res) => {
               border-top-right-radius: 4px;
               border-bottom-right-radius: 4px;
               gap: 8px;
+              padding: 0 8px;
             }
 
             .card__logo {
@@ -112,7 +117,7 @@ app.get('/api', async (req, res) => {
               text-overflow: ellipsis;
               text-align: center;
               animation: ${cardTitleAnimation};
-              width: 150px;
+              max-width: 150px;
               flex-grow: 1;
             }
             
@@ -123,7 +128,7 @@ app.get('/api', async (req, res) => {
               white-space: nowrap;
               text-overflow: ellipsis;
               text-align: center;
-              width: 150px;
+              max-width: 150px;
               flex-grow: 1;
             }
 
