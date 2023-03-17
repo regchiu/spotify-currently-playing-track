@@ -54,25 +54,26 @@ app.get('/api', async (req, res) => {
     }
 
     res.setHeader('Content-Type', 'image/svg+xml')
-    res.send(`<svg fill="none" viewBox="0 0 500 250" width="500" height="250" xmlns="http://www.w3.org/2000/svg">
+    res.send(`<svg fill="none" viewBox="0 0 300 150" width="300" height="150" xmlns="http://www.w3.org/2000/svg">
       <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
           <style>
             .external-link {
               text-decoration: none;
+              display: flex;
+              width: 300px;
+              height: 150px;
             }
 
             .card {
-              width: 500px;
-              height: 250px;
               display: flex;
+              flex-grow: 1;
               box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
               border-radius: 4px;
             }
 
             .card__img {
-              width: 250px;
-              height: 250px;
+              flex: 1;
               background-image: ${cardImg};
               background-repeat: no-repeat;
               background-size: contain;
@@ -83,49 +84,51 @@ app.get('/api', async (req, res) => {
 
             .card__body {
               background-color: #000000;
-              width: 250px;
-              height: 250px;
               display: flex;
               flex-direction: column;
               align-items: center;
-              justify-content: space-around;
+              flex: 1;
+              justify-content: space-between;
               border-top-right-radius: 4px;
               border-bottom-right-radius: 4px;
             }
 
             .card__logo {
+              display: block;
               width: 100px;
               height: 50px;
               transform-origin: bottom;
               animation: ${cardLogoAnimation};
+              flex-grow: 1;
+              object-fit: contain;
             }
 
             .card__title {
-              font: 600 18px 'Segoe UI', Ubuntu, Sans-Serif;
+              font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif;
               color: #ffffff;
-              width: 250px;
-              height: 50px;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
               text-align: center;
               animation: ${cardTitleAnimation};
+              width: 150px;
+              flex-grow: 1;
             }
             
             .card__subtitle {
-              font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif;
+              font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif;
               color: #ffffff;
-              width: 250px;
-              height: 50px;
               overflow: hidden;
               white-space: nowrap;
               text-overflow: ellipsis;
               text-align: center;
+              width: 150px;
+              flex-grow: 1;
             }
 
             .overlay {
               background-image: linear-gradient(transparent 0%, rgba(30, 215, 96, 0.1) 50%);
-              background-size: 250px 2px;
+              background-size: 150px 2px;
               content: '';
               position: absolute;
               right: 0;
