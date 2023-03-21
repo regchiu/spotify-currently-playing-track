@@ -80,7 +80,7 @@ app.get('/api', async (req, res) => {
               flex: 1;
               background-image: ${cardImg};
               background-repeat: no-repeat;
-              background-size: contain;
+              background-size: cover;
               border-top-left-radius: 4px;
               border-bottom-left-radius: 4px;
               background-position: center;
