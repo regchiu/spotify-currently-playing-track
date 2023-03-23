@@ -61,7 +61,7 @@ $ npm run start
 
   ![Import Project Settings](preview/import_project_settings_vercel.jpg)
 
-5. Click deploy, and see your domains to use the API! enjoy! :tada:
+5. Click deploy, and see your domains to use the API! Replace overview link with your URL. enjoy! :tada:
 
 ## Known Bug :bug:
 
