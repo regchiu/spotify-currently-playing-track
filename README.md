@@ -1,6 +1,6 @@
 # Spotify Currently Playing Track
 
-Dynamically generate Spotify currently playing tracks for your github readme.
+Dynamically generate Spotify currently playing tracks for your github readme or everywhere.
 
 ## Overview
 
