@@ -11,13 +11,15 @@ const spotifyApi = new SpotifyWebApi({
   clientId: process.env.YOUR_CLIENT_ID,
   clientSecret: process.env.YOUR_CLIENT_SECRET,
   redirectUri: process.env.YOUR_REDIRECT_URI,
-  refreshToken: process.env.YOUR_REFRESH_TOKEN
+  refreshToken: process.env.YOUR_REFRESH_TOKEN,
 })
 
 app.get('/api', async (req, res) => {
   try {
     const assetsPath = path.resolve(__dirname, '../assets')
-    const logoSvg = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), { encoding: 'base64' })
+    const logoSvg = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), {
+      encoding: 'base64',
+    })
 
     const data = await spotifyApi.refreshAccessToken()
     spotifyApi.setAccessToken(data.body['access_token'])
@@ -46,7 +48,7 @@ app.get('/api', async (req, res) => {
           'base64'
         )})`
         cardTitle = currentPlayingTrack.body.item.name
-        cardSubtitle = currentPlayingTrack.body.item.artists.map(artist => artist.name).join(', ')
+        cardSubtitle = currentPlayingTrack.body.item.artists.map((artist) => artist.name).join(', ')
         cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
         cardTitleAnimation = 'none'
         playing = true
@@ -217,8 +219,7 @@ app.get('/api', async (req, res) => {
           </a>
         </div>
       </foreignObject>
-      </svg>`
-    )
+      </svg>`)
     res.end()
   } catch (error) {
     console.error(JSON.stringify(error))
