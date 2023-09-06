@@ -17,7 +17,7 @@ const spotifyApi = new SpotifyWebApi({
 app.get('/api', async (req, res) => {
   try {
     const assetsPath = path.resolve(__dirname, '../assets')
-    const logoSvg = readFileSync(path.join(assetsPath, 'logo.svg'), { encoding: 'base64' })
+    const logoSvg = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), { encoding: 'base64' })
 
     const data = await spotifyApi.refreshAccessToken()
     spotifyApi.setAccessToken(data.body['access_token'])
