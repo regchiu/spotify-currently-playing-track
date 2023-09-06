@@ -6,7 +6,9 @@
   "scripts": {
     "get-authorize-url": "node scripts/getAuthorizeURL.js",
     "get-refresh-token": "node scripts/getRefreshToken.js",
-    "start": "node ./api/index.js"
+    "start": "node ./api/index.js",
+    "lint": "eslint . --fix --ignore-path .gitignore",
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",

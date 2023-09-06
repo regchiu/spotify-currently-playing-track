@@ -22,7 +22,7 @@ if (!providedCode) {
 
 const code = args[2]
 
-async function printRefreshToken (){
+async function printRefreshToken() {
   try {
     const data = await spotifyApi.authorizationCodeGrant(code)
     // Set the access token on the API object to use it in later calls
