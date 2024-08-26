@@ -1,11 +1,13 @@
-require('dotenv').config()
-const { readFileSync } = require('fs')
-const path = require('path')
-const express = require('express')
-const app = express()
-const SpotifyWebApi = require('spotify-web-api-node')
-const axios = require('axios')
+import 'dotenv/config'
+import { readFileSync } from 'node:fs'
+import path from 'node:path'
+import express from 'express'
+import SpotifyWebApi from 'spotify-web-api-node'
+import axios from 'axios'
+
 const baseUrl = process.env.BASE_URL
+
+const app = express()
 
 const spotifyApi = new SpotifyWebApi({
   clientId: process.env.YOUR_CLIENT_ID,
@@ -14,7 +16,7 @@ const spotifyApi = new SpotifyWebApi({
   refreshToken: process.env.YOUR_REFRESH_TOKEN,
 })
 
-app.get('/api', async (req, res) => {
+app.get('/api', async (_, res) => {
   try {
     const assetsPath = path.resolve(__dirname, '../assets')
     const logoSvg = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), {
@@ -35,8 +37,9 @@ app.get('/api', async (req, res) => {
 
     if (Object.keys(currentPlayingTrack.body).length > 0) {
       if (currentPlayingTrack.body.item) {
-        externalLink = currentPlayingTrack.body.item.album.external_urls.spotify
-        const imgUrl = currentPlayingTrack.body.item.album.images.filter(
+        const currentPlayingTrackBodyItem = currentPlayingTrack.body.item as SpotifyApi.TrackObjectFull
+        externalLink = currentPlayingTrackBodyItem.album.external_urls.spotify
+        const imgUrl = currentPlayingTrackBodyItem.album.images.filter(
           (image) => image.height === 300
         )[0].url
 
@@ -47,8 +50,8 @@ app.get('/api', async (req, res) => {
         cardImg = `url(data:image/png;base64,${Buffer.from(response.data, 'binary').toString(
           'base64'
         )})`
-        cardTitle = currentPlayingTrack.body.item.name
-        cardSubtitle = currentPlayingTrack.body.item.artists.map((artist) => artist.name).join(', ')
+        cardTitle = currentPlayingTrackBodyItem.name
+        cardSubtitle = currentPlayingTrackBodyItem.artists.map((artist) => artist.name).join(', ')
         cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
         cardTitleAnimation = 'none'
         playing = true

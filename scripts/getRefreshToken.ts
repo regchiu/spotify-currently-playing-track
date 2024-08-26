@@ -1,5 +1,5 @@
-require('dotenv').config()
-const SpotifyWebApi = require('spotify-web-api-node')
+import 'dotenv/config'
+import SpotifyWebApi from "spotify-web-api-node"
 
 const args = process.argv
 

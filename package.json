@@ -5,9 +5,9 @@
   "description": "Dynamically generate Spotify currently playing tracks for your github readme",
   "main": "index.js",
   "scripts": {
-    "get-authorize-url": "node scripts/getAuthorizeURL.js",
-    "get-refresh-token": "node scripts/getRefreshToken.js",
-    "start": "node ./api/index.js",
+    "get-authorize-url": "ts-node scripts/getAuthorizeURL.ts",
+    "get-refresh-token": "ts-node scripts/getRefreshToken.ts",
+    "start": "ts-node ./api/index.ts",
     "lint": "eslint . --fix --ignore-path .gitignore",
     "format": "prettier --write ."
   },
@@ -23,21 +23,21 @@
   },
   "homepage": "https://github.com/regchiu/spotify-currently-playing-track#readme",
   "devDependencies": {
-    "eslint": "^8.11.0",
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.5.0",
+    "@types/spotify-web-api-node": "^5.0.11",
+    "@typescript-eslint/eslint-plugin": "^8.2.0",
+    "@typescript-eslint/parser": "^8.2.0",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.5.0",
-    "prettier": "^2.6.0"
+    "express": "^4.19.2",
+    "prettier": "^2.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
   },
   "dependencies": {
     "axios": "^1.7.5",
-    "dotenv": "^8.2.0",
-    "express": "^4.19.2",
-    "spotify-web-api-node": "^4.0.0"
-  },
-  "overrides": {
-    "spotify-web-api-node": {
-      "superagent": {
-        "formidable": "^3.2.4"
-      }
-    }
+    "dotenv": "^16.4.5",
+    "spotify-web-api-node": "^5.0.2"
   }
 }
