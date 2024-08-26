@@ -1,5 +1,6 @@
 {
   "name": "spotify-currently-playing-track",
+  "private": "true",
   "version": "1.0.0",
   "description": "Dynamically generate Spotify currently playing tracks for your github readme",
   "main": "index.js",
@@ -27,7 +28,7 @@
     "prettier": "^2.6.0"
   },
   "dependencies": {
-    "axios": "^1.6.0",
+    "axios": "^1.7.5",
     "dotenv": "^8.2.0",
     "express": "^4.19.2",
     "spotify-web-api-node": "^4.0.0"
