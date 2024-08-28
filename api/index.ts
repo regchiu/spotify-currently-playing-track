@@ -18,8 +18,8 @@ const spotifyApi = new SpotifyWebApi({
 
 app.get('/api', async (_, res) => {
   try {
-    const assetsPath = path.resolve(__dirname, '../assets')
-    const logoSvg = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), {
+    const assetsPath: string = path.resolve(__dirname, '../assets')
+    const logoSvg: string = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), {
       encoding: 'base64',
     })
 
@@ -27,13 +27,14 @@ app.get('/api', async (_, res) => {
     spotifyApi.setAccessToken(data.body['access_token'])
     const currentPlayingTrack = await spotifyApi.getMyCurrentPlayingTrack()
 
-    let externalLink = '#'
-    let cardImg = 'radial-gradient(#222922, #000500)'
-    let cardTitle = 'No tracks'
-    let cardSubtitle = ''
-    let cardLogoAnimation = 'none'
-    let cardTitleAnimation = 'noise 2s linear infinite'
-    let playing = false
+    let externalLink: string = '#'
+    let cardImg: string = 'radial-gradient(#222922, #000500)'
+    let cardTitle: string = 'No tracks'
+    let cardSubtitle: string = ''
+    let cardLogoAnimation: string = 'none'
+    let cardTitleAnimation: string = 'noise 2s linear infinite'
+    let cardSubtitleAnimation: string = 'none'
+    let playing: boolean = false
 
     if (Object.keys(currentPlayingTrack.body).length > 0) {
       if (currentPlayingTrack.body.item) {
@@ -53,7 +54,8 @@ app.get('/api', async (_, res) => {
         cardTitle = currentPlayingTrackBodyItem.name
         cardSubtitle = currentPlayingTrackBodyItem.artists.map((artist) => artist.name).join(', ')
         cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
-        cardTitleAnimation = 'none'
+        cardTitleAnimation = cardTitle.length > 10 ? `marquee ${cardTitle.length * 0.5}s linear infinite alternate` : 'none'
+        cardSubtitleAnimation = cardSubtitle.length > 10 ? `marquee ${cardSubtitle.length * 0.5}s linear infinite alternate` : 'none'
         playing = true
       }
     }
@@ -76,19 +78,20 @@ app.get('/api', async (_, res) => {
 
             .card {
               display: flex;
-              flex-grow: 1;
+              flex: 1;
               box-shadow: 0 3px 1px -2px rgba(0, 0, 0, .2), 0 2px 2px 0 rgba(0, 0, 0, .14), 0 1px 5px 0 rgba(0, 0, 0, .12);
               border-radius: 4px;
             }
 
             .card__img {
-              flex: 1;
               background-image: ${cardImg};
               background-repeat: no-repeat;
               background-size: cover;
               border-top-left-radius: 4px;
               border-bottom-left-radius: 4px;
               background-position: center;
+              z-index: 10;
+              width: 150px;
             }
 
             .card__body {
@@ -96,45 +99,58 @@ app.get('/api', async (_, res) => {
               display: flex;
               flex-direction: column;
               align-items: center;
-              flex: 1;
-              justify-content: space-between;
               border-top-right-radius: 4px;
               border-bottom-right-radius: 4px;
               gap: 8px;
-              padding: 0 8px;
+              width: 150px;
             }
 
             .card__logo {
-              display: block;
-              width: 100px;
-              height: 50px;
+              flex: 1;
+              width: 100%;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+            }
+
+            .card__logo > img {
               transform-origin: bottom;
               animation: ${cardLogoAnimation};
-              flex-grow: 1;
+              width: 100px;
+              height: 50px;
               object-fit: contain;
             }
 
             .card__title {
+              flex: 1;
               font: 600 14px 'Segoe UI', Ubuntu, Sans-Serif;
               color: #ffffff;
-              overflow: hidden;
               white-space: nowrap;
-              text-overflow: ellipsis;
-              text-align: center;
+              overflow: hidden;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+            }
+
+            .card__title > span {
               animation: ${cardTitleAnimation};
-              max-width: 150px;
-              flex-grow: 1;
             }
             
             .card__subtitle {
+              flex: 1;
               font: 600 12px 'Segoe UI', Ubuntu, Sans-Serif;
               color: #ffffff;
-              overflow: hidden;
               white-space: nowrap;
-              text-overflow: ellipsis;
-              text-align: center;
-              max-width: 150px;
-              flex-grow: 1;
+              overflow: hidden;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              width: 100%;
+            }
+
+            .card__subtitle > span {
+              animation: ${cardSubtitleAnimation};
             }
 
             .overlay {
@@ -208,14 +224,29 @@ app.get('/api', async (_, res) => {
                 transform: scaleX(20) rotate(-60deg);
               }
             }
+            
+            @keyframes marquee {
+              0% {
+                transform: translateX(55%);
+              }
+              100% {
+                transform: translateX(-55%);
+              }
+            }
           </style>
           <a class="external-link" href="${externalLink}" target="_blank">
             <div class="card">
               <div class="card__img"></div>
               <div class="card__body">
-                <img class="card__logo" src="data:image/svg+xml;base64,${logoSvg}" />
-                <div class="card__title"><![CDATA[${cardTitle}]]></div>
-                <div class="card__subtitle"><![CDATA[${cardSubtitle}]]></div>
+                <div class="card__logo">
+                  <img src="data:image/svg+xml;base64,${logoSvg}" />
+                </div>
+                <div class="card__title">
+                  <span><![CDATA[${cardTitle}]]></span>
+                </div>
+                <div class="card__subtitle">
+                  <span><![CDATA[${cardSubtitle}]]></span>
+                </div>
               </div>
               <div class="${playing ? '' : 'overlay'}"></div>
             </div>
