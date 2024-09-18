@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/spotify_logo_rgb_green.svg" width="400" alt="Spotify logo" />
+  <img src="assets/spotify_logo_rgb_green.svg" width="200" alt="Spotify logo" />
 </p>
 
 # Spotify Currently Playing Track
