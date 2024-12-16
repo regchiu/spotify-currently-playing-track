@@ -17,28 +17,28 @@ const spotifyApi = new SpotifyWebApi({
 })
 
 app.get('/api', async (_, res) => {
-  try {
-    const assetsPath: string = path.resolve(__dirname, '../assets')
-    const logoSvg: string = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), {
-      encoding: 'base64',
-    })
+  const assetsPath: string = path.resolve(__dirname, '../assets')
+  const logoSvg: string = readFileSync(path.join(assetsPath, 'spotify_logo_rgb_green.svg'), {
+    encoding: 'base64',
+  })
+  let externalLink: string = '#'
+  let cardImg: string = 'radial-gradient(#222922, #000500)'
+  let cardTitle: string = 'Not playing'
+  let cardSubtitle: string = ''
+  let cardLogoAnimation: string = 'none'
+  let cardTitleAnimation: string = 'noise 2s linear infinite'
+  let cardSubtitleAnimation: string = 'none'
+  let playing: boolean = false
 
+  try {
     const data = await spotifyApi.refreshAccessToken()
     spotifyApi.setAccessToken(data.body['access_token'])
     const currentPlayingTrack = await spotifyApi.getMyCurrentPlayingTrack()
 
-    let externalLink: string = '#'
-    let cardImg: string = 'radial-gradient(#222922, #000500)'
-    let cardTitle: string = 'No tracks'
-    let cardSubtitle: string = ''
-    let cardLogoAnimation: string = 'none'
-    let cardTitleAnimation: string = 'noise 2s linear infinite'
-    let cardSubtitleAnimation: string = 'none'
-    let playing: boolean = false
-
     if (Object.keys(currentPlayingTrack.body).length > 0) {
       if (currentPlayingTrack.body.item) {
-        const currentPlayingTrackBodyItem = currentPlayingTrack.body.item as SpotifyApi.TrackObjectFull
+        const currentPlayingTrackBodyItem = currentPlayingTrack.body
+          .item as SpotifyApi.TrackObjectFull
         externalLink = currentPlayingTrackBodyItem.album.external_urls.spotify
         const imgUrl = currentPlayingTrackBodyItem.album.images.filter(
           (image) => image.height === 300
@@ -54,14 +54,21 @@ app.get('/api', async (_, res) => {
         cardTitle = currentPlayingTrackBodyItem.name
         cardSubtitle = currentPlayingTrackBodyItem.artists.map((artist) => artist.name).join(', ')
         cardLogoAnimation = '4s cubic-bezier(.5, 0, .5, 1.2) 1s infinite bounce'
-        cardTitleAnimation = cardTitle.length > 10 ? `marquee ${cardTitle.length * 0.5}s linear infinite alternate` : 'none'
-        cardSubtitleAnimation = cardSubtitle.length > 10 ? `marquee ${cardSubtitle.length * 0.5}s linear infinite alternate` : 'none'
+        cardTitleAnimation =
+          cardTitle.length > 10
+            ? `marquee ${cardTitle.length * 0.5}s linear infinite alternate`
+            : 'none'
+        cardSubtitleAnimation =
+          cardSubtitle.length > 10
+            ? `marquee ${cardSubtitle.length * 0.5}s linear infinite alternate`
+            : 'none'
         playing = true
       }
     }
-
-    res.setHeader('Content-Type', 'image/svg+xml')
-    res.send(`<svg fill="none" viewBox="0 0 300 150" width="300" height="150" xmlns="http://www.w3.org/2000/svg">
+  } catch (error) {
+    console.error(JSON.stringify(error))
+  } finally {
+    const svg: string = `<svg fill="none" viewBox="0 0 300 150" width="300" height="150" xmlns="http://www.w3.org/2000/svg">
       <foreignObject width="100%" height="100%">
         <div xmlns="http://www.w3.org/1999/xhtml">
           <style>
@@ -253,10 +260,10 @@ app.get('/api', async (_, res) => {
           </a>
         </div>
       </foreignObject>
-      </svg>`)
+      </svg>`
+    res.setHeader('Content-Type', 'image/svg+xml')
+    res.send(svg)
     res.end()
-  } catch (error) {
-    console.error(JSON.stringify(error))
   }
 })
 
