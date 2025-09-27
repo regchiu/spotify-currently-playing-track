@@ -15,7 +15,7 @@ if (!providedCode) {
   console.log('Provide the Spotify authorization code.')
   console.log('Usage example:')
   console.log('')
-  console.log('npm run get-refresh-token <code>')
+  console.log('pnpm get-refresh-token <code>')
   console.log('')
   process.exit(1)
 }

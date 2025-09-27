@@ -24,13 +24,13 @@ Dynamically generate Spotify currently playing tracks for your github readme or 
 #### 2. Installation
 
 ```
-$ npm install
+$ pnpm install
 ```
 
 #### 3. Get Authorize URL
 
 ```
-$ npm run get-authorize-url
+$ pnpm get-authorize-url
 ```
 
 Paste the entire link into your browser and copy the url query string named **"code"**.
@@ -38,7 +38,7 @@ Paste the entire link into your browser and copy the url query string named **"c
 #### 4. Get Refresh Token
 
 ```
-$ npm run get-refresh-token <code>
+$ pnpm get-refresh-token <code>
 ```
 
 Copy and paste it into the `YOUR_REFRESH_TOKEN` field.
@@ -46,7 +46,7 @@ Copy and paste it into the `YOUR_REFRESH_TOKEN` field.
 #### 5. Run start
 
 ```
-$ npm run start
+$ pnpm start
 ```
 
 ### Deploy on your Vercel
@@ -63,12 +63,8 @@ $ npm run start
 
 Allow access to your repository, if prompted.
 
-4. Select root and keep everything default, then add `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET` and `YOUR_REFRESH_TOKEN` of **Environment Variables**.
+1. Select root and keep everything default, then add `YOUR_CLIENT_ID`, `YOUR_CLIENT_SECRET`, `YOUR_REFRESH_TOKEN`, and [ENABLE_EXPERIMENTAL_COREPACK](https://vercel.com/docs/builds/configure-a-build#corepack) of **Environment Variables**.
 
 ![Import Project Settings](preview/import_project_settings_vercel.jpg)
 
 5. Click deploy, and see your domains to use the API! Replace overview link with your URL. enjoy! :tada:
-
-## Known Bug :bug:
-
-[Layer content inside HTML in SVG foreignObject renders in the wrong place](https://bugs.webkit.org/show_bug.cgi?id=23113)
